@@ -11,5 +11,7 @@
 List Featuers
 <ul>
 <li>Multiple Auth (Super Admin, Admin, User)</li>
+<li>Laravel Breeze</li>
+<li>Tailwind Flowbite</li>
 <li>Email Verification</li>
 </ul>
