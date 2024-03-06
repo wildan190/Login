@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SuperAdmin\SuperAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['checkRole:superadmin'])->group(function () {
-    // Routes yang memerlukan superadmin role
+Route::prefix('superadmin')->middleware(['auth', 'checkRole:superadmin'])->group(function () {
+    Route::get('/', [SuperAdminController::class, 'index'])->name('superadmin.index');
+    Route::patch('/update-user-roles', [SuperAdminController::class, 'updateUserRoles'])->name('superadmin.updateUserRoles');
 });
 
 Route::middleware(['checkRole:admin,superadmin'])->group(function () {
